@@ -1,9 +1,9 @@
 <!-- Display the countdown timer in an element -->
-<p id="1 year"></p>
+<p id="1year"></p>
 
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("Oct 11, 2018 01:01:01").getTime();
+var countDownDate = new Date("Oct 11, 2018 00:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -21,13 +21,13 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  document.getElementById("1year").innerHTML = days + "d " + hours + "h "
   + minutes + "m " + seconds + "s ";
 
   // If the count down is finished, write some text 
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+    document.getElementById("1year").innerHTML = "EXPIRED";
   }
 }, 1000);
 </script>
