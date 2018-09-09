@@ -44,10 +44,15 @@
 <script>
 var n = 0;
 document.getElementById("far").innerHTML = n;
+function randoAdd(){
+faster();
+randomize();
+}
+
 function randomize(){
 	var i;
 	for(i=0;i<18;i++){
-		document.getElementsByTagName("marquee")[i].setAttribute("scrollamount", randomXY(0+n,25+n*i+n));
+		document.getElementsByTagName("marquee")[i].setAttribute("scrollamount", randomXY(1+n,25+n*i+n));
 	}
 }
 
@@ -56,10 +61,10 @@ function faster(){
 	document.getElementById("far").innerHTML = n;
 	randomize();
 }
-//var interval = setInterval(randomize, 5000);
+var interval = setInterval(randoAdd, 5000);
 
 function stop(){
-	//clearInterval(interval);
+	clearInterval(interval);
 	var i;
 	for(i = 0;i<18;i++){
 		document.getElementsByTagName("marquee")[i].setAttribute("scrollamount",i);
@@ -71,7 +76,7 @@ function stop(){
 }
 
 function start(){
-	//interval = setInterval(randomize, 5000);
+	interval = setInterval(randomize, 5000);
 	document.getElementById("stop").innerHTML = "Make it stop";
 	document.getElementById("stop").onclick = function () { stop(); };
 	randomize();
