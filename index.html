@@ -88,7 +88,11 @@
 		}
 		
 		function ohno(){
-			document.getElementsByTagName("body")[0].innerHTML="";
+			document.getElementsByTagName("body")[0].innerHTML="<button onclick=\"comeback();\">come back please I'm not done</button>";
+		}
+		
+		function comeback(){
+			location.reload();
 		}
 		</script>
 	</body>
