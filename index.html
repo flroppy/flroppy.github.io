@@ -43,6 +43,8 @@
 		<button id="yes" onclick="faster();"><em>Faster</em></button>
 		<br />
 		<button id="stop" onclick="start();">Make it start</button>
+		<br />
+		<button id="ohno" onclick="ohno();">Make my suffering end</button>
 		<script>
 		var n = 0;
 		document.getElementById("far").innerHTML = n;
@@ -83,6 +85,10 @@
 			document.getElementById("stop").innerHTML = "Make it stop";
 			document.getElementById("stop").onclick = function () { stop(); };
 			randomize();
+		}
+		
+		function ohno(){
+			document.getElementsByTagName("body")[0].innerHTML="";
 		}
 		</script>
 	</body>
