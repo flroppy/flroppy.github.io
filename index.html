@@ -11,6 +11,11 @@
 				padding:2px;
 				margin:5px;
 				margin-left:0px;
+				color:black;
+				background-color:white;
+				border-style:solid;
+				border-color:black;
+				padding:5px
 			}
 		</style>
 		<script>
@@ -52,6 +57,8 @@
 			<button id="stop" onclick="start();">Make it start</button>
 			
 			<button id="ohno" onclick="ohno();">Make my suffering end</button>
+			
+			<button id="plsstop" onclick="reset();">STOP!</button>
 		</div>
 		<script>
 		var n = 0;
@@ -78,12 +85,8 @@
 		clearInterval(interval);
 		function stop(){
 			clearInterval(interval);
-			var i;
-			for(i = 0;i<18;i++){
-				document.getElementsByTagName("marquee")[i].setAttribute("scrollamount",i+1);
-			}
-			n = 0;
-			document.getElementById("far").innerHTML = n;
+			//n = 0;
+			//document.getElementById("far").innerHTML = n;
 			document.getElementById("stop").innerHTML = "Make it start";
 			document.getElementById("stop").onclick = function () { start(); };
 		}
@@ -93,6 +96,10 @@
 			document.getElementById("stop").innerHTML = "Make it stop";
 			document.getElementById("stop").onclick = function () { stop(); };
 			randomize();
+		}
+		
+		function reset(){
+			location.reload();
 		}
 		
 		function ohno(){
