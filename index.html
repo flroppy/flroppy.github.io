@@ -1,86 +1,89 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>hi</title>
-<style style="text/css">
-	span {
-		font-size:2em;font-family:monospace;
-	}
-</style>
-<script>function randomXY(minVal,maxVal)
-{
-  var randVal = minVal+(Math.random()*(maxVal-minVal));
-  return Math.round(randVal);
-}</script>
-</head>
-<body>
-<div style="width:500px">
-<marquee behavior="scroll" direction="right" scrollamount="1"><span>N</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="2"><span>A</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="3"><span>T</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="4"><span>H</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="5"><span>A</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="6"><span>N</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="7"><span>S</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="8"><span>P</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="9"><span>I</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="10"><span>C</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="11"><span>E</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="12"><span>R</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="13"><span>-</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="14"><span>D</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="15"><span>A</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="16"><span>V</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="17"><span>I</span></marquee>
-<marquee behavior="scroll" direction="right" scrollamount="18"><span>S</span></marquee>
-</div>
-<span id="far"></span>
-<br />
-<button id="random" onclick="randomize();">Randomize</button>
-<br />
-<button id="yes" onclick="faster();"><em>Faster</em></button>
-<br />
-<button id="stop" onclick="start();">Make it start</button>
-<script>
-var n = 0;
-document.getElementById("far").innerHTML = n;
-function randoAdd(){
-faster();
-randomize();
-}
+	<head>
+		<title>hi</title>
+		<style style="text/css">
+			span {
+				font-size:2em;font-family:monospace;
+			}
+		</style>
+		<script>
+		function randomXY(minVal,maxVal)
+		{
+		  var randVal = minVal+(Math.random()*(maxVal-minVal));
+		  return Math.round(randVal);
+		}
+		</script>
+	</head>
+	<body>
+		<div style="width:500px">
+			<marquee behavior="scroll" direction="right" scrollamount="1"><span>N</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="2"><span>A</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="3"><span>T</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="4"><span>H</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="5"><span>A</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="6"><span>N</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="7"><span>S</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="8"><span>P</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="9"><span>I</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="10"><span>C</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="11"><span>E</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="12"><span>R</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="13"><span>-</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="14"><span>D</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="15"><span>A</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="16"><span>V</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="17"><span>I</span></marquee>
+			<marquee behavior="scroll" direction="right" scrollamount="18"><span>S</span></marquee>
+		</div>
+		<span id="far"></span>
+		<br />
+		<button id="random" onclick="randomize();">Randomize</button>
+		<br />
+		<button id="yes" onclick="faster();"><em>Faster</em></button>
+		<br />
+		<button id="stop" onclick="start();">Make it start</button>
+		<script>
+		var n = 0;
+		document.getElementById("far").innerHTML = n;
+		
+		function randoAdd(){
+			faster();
+			randomize();
+		}
 
-function randomize(){
-	var i;
-	for(i=0;i<18;i++){
-		document.getElementsByTagName("marquee")[i].setAttribute("scrollamount", randomXY(1+n,25+n*i+n));
-	}
-}
+		function randomize(){
+			var i;
+			for(i=0;i<18;i++){
+				document.getElementsByTagName("marquee")[i].setAttribute("scrollamount", randomXY(1+n,25+n*i+n));
+			}
+		}
 
-function faster(){
-	n++;
-	document.getElementById("far").innerHTML = n;
-	randomize();
-}
-var interval = setInterval(randoAdd, 5000);
-clearInterval(interval);
-function stop(){
-	clearInterval(interval);
-	var i;
-	for(i = 0;i<18;i++){
-		document.getElementsByTagName("marquee")[i].setAttribute("scrollamount",i+1);
-	}
-	n = 0;
-	document.getElementById("far").innerHTML = n;
-	document.getElementById("stop").innerHTML = "Make it start";
-	document.getElementById("stop").onclick = function () { start(); };
-}
+		function faster(){
+			n++;
+			document.getElementById("far").innerHTML = n;
+			randomize();
+		}
+		var interval = setInterval(randoAdd, 5000);
+		clearInterval(interval);
+		function stop(){
+			clearInterval(interval);
+			var i;
+			for(i = 0;i<18;i++){
+				document.getElementsByTagName("marquee")[i].setAttribute("scrollamount",i+1);
+			}
+			n = 0;
+			document.getElementById("far").innerHTML = n;
+			document.getElementById("stop").innerHTML = "Make it start";
+			document.getElementById("stop").onclick = function () { start(); };
+		}
 
-function start(){
-	interval = setInterval(randoAdd, 5000);
-	document.getElementById("stop").innerHTML = "Make it stop";
-	document.getElementById("stop").onclick = function () { stop(); };
-	randomize();
-}
-</script>
-</body>
+		function start(){
+			interval = setInterval(randoAdd, 5000);
+			document.getElementById("stop").innerHTML = "Make it stop";
+			document.getElementById("stop").onclick = function () { stop(); };
+			randomize();
+		}
+		</script>
+	</body>
 </html>
