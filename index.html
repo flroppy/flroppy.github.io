@@ -67,7 +67,7 @@ function stop(){
 	clearInterval(interval);
 	var i;
 	for(i = 0;i<18;i++){
-		document.getElementsByTagName("marquee")[i].setAttribute("scrollamount",i);
+		document.getElementsByTagName("marquee")[i].setAttribute("scrollamount",i+1);
 	}
 	n = 0;
 	document.getElementById("far").innerHTML = n;
