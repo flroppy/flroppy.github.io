@@ -36,18 +36,25 @@
 </div>
 <span id="far"></span>
 <br />
-<button id="yes" onclick="randomize();"><em>faster</em></button>
+<button id="random" onclick="randomize();">Randomize</button>
+<br />
+<button id="yes" onclick="faster();"><em>Faster</em></button>
 <br />
 <button id="stop" onclick="stop();">Make it stop</button>
 <script>
 var n = 0;
+document.getElementById("far").innerHTML = n;
 function randomize(){
 	var i;
 	for(i=0;i<18;i++){
 		document.getElementsByTagName("marquee")[i].setAttribute("scrollamount", randomXY(0+n,25+n*i+n));
 	}
+}
+
+function faster(){
 	n++;
 	document.getElementById("far").innerHTML = n;
+	randomize();
 }
 //var interval = setInterval(randomize, 5000);
 
@@ -58,6 +65,7 @@ function stop(){
 		document.getElementsByTagName("marquee")[i].setAttribute("scrollamount",i);
 	}
 	n = 0;
+	document.getElementById("far").innerHTML = n;
 	document.getElementById("stop").innerHTML = "Make it start";
 	document.getElementById("stop").onclick = function () { start(); };
 }
