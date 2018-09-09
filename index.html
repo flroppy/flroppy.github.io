@@ -40,7 +40,7 @@
 <br />
 <button id="yes" onclick="faster();"><em>Faster</em></button>
 <br />
-<button id="stop" onclick="stop();">Make it stop</button>
+<button id="stop" onclick="start();">Make it start</button>
 <script>
 var n = 0;
 document.getElementById("far").innerHTML = n;
@@ -62,7 +62,7 @@ function faster(){
 	randomize();
 }
 var interval = setInterval(randoAdd, 5000);
-
+clearInterval(interval);
 function stop(){
 	clearInterval(interval);
 	var i;
@@ -76,7 +76,7 @@ function stop(){
 }
 
 function start(){
-	interval = setInterval(randomize, 5000);
+	interval = setInterval(randoAdd, 5000);
 	document.getElementById("stop").innerHTML = "Make it stop";
 	document.getElementById("stop").onclick = function () { stop(); };
 	randomize();
