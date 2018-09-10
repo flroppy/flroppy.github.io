@@ -1,8 +1,23 @@
-<!-- Display the countdown timer in an element -->
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function getWidth() {
+  return Math.max(
+    document.documentElement.scrollWidth,
+    document.documentElement.offsetWidth,
+    document.documentElement.clientWidth
+  );
+}
+
+console.log('Width:  ' +  getWidth() );
+</script>
+</head>
+<body>
 <p id="1year"></p>
 
 <script>
-// Set the date we're counting down to
+
 var countDownDate = new Date("Oct 11, 2018 00:00:00").getTime();
 
 // Update the count down every 1 second
@@ -18,16 +33,24 @@ var x = setInterval(function() {
   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = (distance % (1000 * 60)) / 1000;
+  var seconds = Math.round(((distance % (1000 * 60)) / 1000)*100)/100;
 
   // Display the result in the element with id="demo"
   document.getElementById("1year").innerHTML = days + "d " + hours + "h "
   + minutes + "m " + seconds + "s ";
+  
+ //if(days>=0 && days<=31){
+    var right = (getWidth()/32)*(distance / (1000 * 60 * 60 * 24));
+	//console.log(right);
+	document.getElementById("1year").setAttribute("style", "position:absolute;right:"+right+"px");
+  //}
 
   // If the count down is finished, write some text 
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("1year").innerHTML = "EXPIRED";
+    document.getElementById("1year").innerHTML = "Happy New Year!";
   }
-}, 1);
+}, 10);
 </script>
+</body>
+</html>
