@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html style="overflow: hidden;max-width:100%; height:100%; margin:0px;">
+<head>
+<script>
+function getWidth() {
+  return Math.max(
+    document.documentElement.scrollWidth,
+    document.documentElement.offsetWidth,
+    document.documentElement.clientWidth
+  );
+}
+var body = document.body,
+    html = document.documentElement;
+function getHeight(){
+return Math.max(html.clientHeight, html.scrollHeight, html.offsetHeight );
+}
+
+function randomSign(){
+return Math.random() < 0.5 ? -1 : 1;
+//return 1
+}
+
+console.log('Width:  ' +  getWidth() );
+console.log('Height:  ' +  getHeight() );
+</script>
+<style type="text/css">
+p {
+font-family:monospace;
+}
+</style>
+</head>
+<body style="overflow: hidden;max-width:100%; height:100%">
+<div id="container" style="width:500px; height:500px; border:solid;">
+<p id="test" style="position:absolute;left:6px;top:6px;">N</p>
+</div>
+<div style="position: absolute;height: 500px;top: 15px;left: 525px; width:250px">
+<p> x</p><input type="text" name="x" />
+<br />
+<p> y</p><input type="text" name="y" />
+<br />
+<p> velocity X</p><input type="text" name="velocityX" />
+<br />
+<p> velocity Y</p><input type="text" name="velocityY" />
+<br />
+<p> acceleration X</p><input type="text" name="accelerationX" />
+<br />
+<p> acceleration Y</p><input type="text" name="accelerationY" />
+<br />
+<p> coefficient of friction X</p><input type="text" name="frictionX" />
+<br />
+<p> coefficient of friction Y</p><input type="text" name="frictionY" />
+<br />
+<button id="send" onclick="updateValues();"><em>do it</em></button>
+</div>
+<script>
+x = 250;
+y = 250;
+speedX = -5;
+speedY = 2;
+deltaY = 10/1000;
+deltaX = 5/1000;
+frictionX = .001;
+frictionY = .001;
+function update(){
+	x+=speedX;
+	y+=speedY;
+	if(y>485 || y<=-8){
+		speedY*=-1;
+	} else {
+		speedY+=deltaY;
+	}
+	if(x>500 || x<=5){
+		speedX*=-1;
+	} else {
+		speedX+=deltaX;
+	}
+	if(speedY>=0){
+	speedY-=frictionY*speedY;
+	}
+	if(speedX>=0){
+	speedX-=frictionX*speedX;
+	}
+	document.getElementById("test").setAttribute("style", "position:absolute;left:"+x+"px;top:"+y+"px;");
+}
+var interval = setInterval(update, 1);
+function updateValues(){
+	x = Number(document.getElementsByName("x")[0].value);
+	y = Number(document.getElementsByName("y")[0].value);
+	speedX = Number(document.getElementsByName("velocityX")[0].value);
+	speedY = Number(document.getElementsByName("velocityY")[0].value);
+	deltaY = Number(document.getElementsByName("accelerationX")[0].value);
+	deltaX = Number(document.getElementsByName("accelerationY")[0].value);
+	frictionX = Number(document.getElementsByName("frictionX")[0].value);
+	frictionY = Number(document.getElementsByName("frictionY")[0].value);
+}
+</script>
+</body>
+</html>
