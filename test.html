@@ -50,6 +50,7 @@ font-family:monospace;
 <br />
 <p> coefficient of friction Y</p><input type="text" name="frictionY" />
 <br />
+<br />
 <button id="send" onclick="updateValues();"><em>do it</em></button>
 </div>
 <script>
@@ -84,8 +85,8 @@ function update(){
 }
 var interval = setInterval(update, 1);
 function updateValues(){
-	x = Number(document.getElementsByName("x")[0].value)-8;
-	y = Number(document.getElementsByName("y")[0].value)+5;
+	x = Number(document.getElementsByName("x")[0].value)+-7;
+	y = Number(document.getElementsByName("y")[0].value)+6;
 	speedX = Number(document.getElementsByName("velocityX")[0].value)/1000;
 	speedY = Number(document.getElementsByName("velocityY")[0].value)/1000;
 	deltaX = Number(document.getElementsByName("accelerationX")[0].value)/1000;
