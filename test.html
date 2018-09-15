@@ -84,14 +84,14 @@ function update(){
 }
 var interval = setInterval(update, 1);
 function updateValues(){
-	x = Number(document.getElementsByName("x")[0].value);
-	y = Number(document.getElementsByName("y")[0].value);
-	speedX = Number(document.getElementsByName("velocityX")[0].value);
-	speedY = Number(document.getElementsByName("velocityY")[0].value);
-	deltaX = Number(document.getElementsByName("accelerationX")[0].value);
-	deltaY = Number(document.getElementsByName("accelerationY")[0].value);
-	frictionX = Number(document.getElementsByName("frictionX")[0].value);
-	frictionY = Number(document.getElementsByName("frictionY")[0].value);
+	x = Number(document.getElementsByName("x")[0].value)-8;
+	y = Number(document.getElementsByName("y")[0].value)+5;
+	speedX = Number(document.getElementsByName("velocityX")[0].value)/1000;
+	speedY = Number(document.getElementsByName("velocityY")[0].value)/1000;
+	deltaX = Number(document.getElementsByName("accelerationX")[0].value)/1000;
+	deltaY = Number(document.getElementsByName("accelerationY")[0].value)/1000;
+	frictionX = Number(document.getElementsByName("frictionX")[0].value)/1000;
+	frictionY = Number(document.getElementsByName("frictionY")[0].value)/1000;
 }
 </script>
 </body>
