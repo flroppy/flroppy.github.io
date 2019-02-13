@@ -16,6 +16,90 @@
 			<button id="convert" onclick="convert()">Convert to ks</button>
 			<p>Time in ks: <span id="output"></span></p>
 		</div>
+		
+		<article class="clock">
+		  <div class="hours-container">
+			<div class="hours"></div>
+		  </div>
+		  <div class="minutes-container">
+			<div class="minutes"></div>
+		  </div>
+		  <div class="seconds-container">
+			<div class="seconds"></div>
+		  </div>
+		</article>
+		
+		<style type="text/css">
+			.clock {
+			  border-radius: 50%;
+			  background: #fff url(goodenough.png) no-repeat center;
+			  background-size: 100%;
+			  height: 300px;
+			  position: relative;
+			  width: 300px;
+			}
+			.clock.simple:after {
+			  background: #000;
+			  border-radius: 50%;
+			  content: "";
+			  position: absolute;
+			  left: 50%;
+			  top: 50%;
+			  transform: translate(-50%, -50%);
+			  width: 5%;
+			  height: 5%;
+			  z-index: 10;
+			}
+			.minutes-container, .hours-container, .seconds-container {
+			  position: absolute;
+			  top: 0;
+			  right: 0;
+			  bottom: 0;
+			  left: 0;
+			}
+			.hours {
+			  background: #000;
+			  height: 20%;
+			  left: 48.75%;
+			  position: absolute;
+			  top: 30%;
+			  transform-origin: 50% 100%;
+			  width: 2.5%;
+			}
+			.minutes {
+			  background: #000;
+			  height: 30%;
+			  left: 49%;
+			  position: absolute;
+			  top: 20%;
+			  transform-origin: 50% 100%;
+			  width: 2%;
+			}
+			.seconds {
+			  background: #000;
+			  height: 45%;
+			  left: 49.5%;
+			  position: absolute;
+			  top: 14%;
+			  transform-origin: 50% 80%;
+			  width: 1%;
+			  z-index: 8;
+			}
+			@keyframes rotate {
+			  100% {
+				transform: rotateZ(360deg);
+			  }
+			}
+			.hours-container {
+			  animation: rotate 86400s infinite linear;
+			}
+			.minutes-container {
+			  animation: rotate 10000s infinite linear;
+			}
+			.seconds-container {
+			  animation: rotate 100s infinite linear;
+			}
+		</style>
 
 		<script type = "text/javascript">
 			var timepicker = new TimePicker('fakeTime', {
@@ -61,6 +145,41 @@
 				ks = ks.toString().padEnd(6,'0');
 				document.getElementById("output").innerHTML = ks;
 			}
+			
+			function initLocalClocks() {
+			  // Get the local time using JS
+			  var currentdate = new Date;
+			  var ks = ((currentdate.getHours()*60*60+currentdate.getMinutes()*60+currentdate.getSeconds())/1000)
+
+			  // Create an object with each hand and it's angle in degrees
+			  var hands = [
+				{
+				  hand: 'hours',
+				  angle: (ks/86.4)*360
+				},
+				{
+				  hand: 'minutes',
+				  angle: (ks%10.0)*36
+				},
+				{
+				  hand: 'seconds',
+				  angle: (ks%0.1)*3600
+				}
+			  ];
+			  // Loop through each of these hands to set their angle
+			  for (var j = 0; j < hands.length; j++) {
+				var elements = document.querySelectorAll('.' + hands[j].hand);
+				for (var k = 0; k < elements.length; k++) {
+					elements[k].style.webkitTransform = 'rotateZ('+ hands[j].angle +'deg)';
+					elements[k].style.transform = 'rotateZ('+ hands[j].angle +'deg)';
+					// If this is a minute hand, note the seconds position (to calculate minute position later)
+					if (hands[j].hand === 'minutes') {
+					  elements[k].parentNode.setAttribute('data-second-angle', hands[j + 1].angle);
+					}
+				}
+			  }
+			}
+			initLocalClocks();
 		  </script>  
 	</body>
 </html>
