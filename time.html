@@ -117,7 +117,7 @@
 				var currentdate = new Date();
 				var currentTime = ((currentdate.getHours()*60*60+currentdate.getMinutes()*60+currentdate.getSeconds())/1000);
 				if(currentTime==0){
-					initLocalClocks();
+					location.reload();
 				}
 				if(currentTime<10){
 					currentTime = " "+currentTime.toString();
@@ -152,7 +152,7 @@
 			function initLocalClocks() {
 			  // Get the local time using JS
 			  var currentdate = new Date;
-			  var ks = ((currentdate.getHours()*60*60+currentdate.getMinutes()*60+currentdate.getSeconds())/1000)
+			  var ks = ((currentdate.getHours()*60*60+currentdate.getMinutes()*60+currentdate.getSeconds()+currentdate.getMilliseconds()/1000)/1000)
 
 			  // Create an object with each hand and it's angle in degrees
 			  var hands = [
