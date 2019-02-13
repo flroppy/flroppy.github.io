@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+	</head>
+	<body>
+	<p style="font-size:2em">Current time in ks:</p>
+	<p id="timeks" style="font-size:4em"></p>
+
+	<script type = "text/javascript">
+		function updateTime(){
+			var currentdate = new Date();
+			var currentTime = ((currentdate.getHours()*60*60+currentdate.getMinutes()*60+currentdate.getSeconds())/1000);
+			if(currentTime<10){
+				currentTime = " "+currentTime.toString();
+			}
+			currentTime = currentTime.toString().padEnd(6,'0');
+			document.getElementById("timeks").innerHTML = currentTime;
+		 }
+		 var x = setInterval(updateTime, 100);
+      </script>  
+	</body>
+	
+</html>
