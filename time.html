@@ -1,23 +1,65 @@
 <!DOCTYPE html>
 <html>
 	<head>
-
+		<script src="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.js"></script>
+		<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 	</head>
 	<body>
 	<p style="font-size:2em">Current time in ks:</p>
-	<p id="timeks" style="font-size:4em"></p>
+	<div style="padding:20px">
+		<p id="timeks" style="font-size:4em"></p>
+	</div>
+	
+	<div>
+		<label>Fake Time: </label>
+		<input type="text" id="fakeTime" name="fakeTime" placeholder="HH:mm" />
+		<button id="convert" onclick="convert()">Convert to ks</button>
+		<p>Time in ks: <span id="output"></span></p>
+	</div>
 
 	<script type = "text/javascript">
+		var timepicker = new TimePicker('fakeTime', {
+		  lang: 'en',
+		  theme: 'dark'
+		});
+		timepicker.on('change', function(evt) {
+		  
+		  var value = (evt.hour || '00') + ':' + (evt.minute || '00');
+		  evt.element.value = value;
+
+		});
+	
 		function updateTime(){
 			var currentdate = new Date();
 			var currentTime = ((currentdate.getHours()*60*60+currentdate.getMinutes()*60+currentdate.getSeconds())/1000);
 			if(currentTime<10){
 				currentTime = " "+currentTime.toString();
 			}
+			if(currentTime.length <= 2) {
+				currentTime = currentTime+".";
+			}
 			currentTime = currentTime.toString().padEnd(6,'0');
 			document.getElementById("timeks").innerHTML = currentTime;
+			document.title = currentTime+"ks";
 		 }
 		 var x = setInterval(updateTime, 100);
+		 
+		function convert(){
+			var input = document.getElementsByName("fakeTime")[0].value.padStart(5, '0');
+			hm = input.split(":");
+			var hours = parseInt(hm[0]);
+			var minutes = parseInt(hm[1]);
+			var ks = (hours*60*60+minutes*60)/1000
+
+			if(ks<10){
+				ks = " "+ks.toString();
+			}
+			if(ks.toString().length <= 2) {
+				ks = ks+".";
+			}
+			ks = ks.toString().padEnd(6,'0');
+			document.getElementById("output").innerHTML = ks;
+		}
       </script>  
 	</body>
 	
