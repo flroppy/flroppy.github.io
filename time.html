@@ -122,7 +122,7 @@
 				if(currentTime<10){
 					currentTime = " "+currentTime.toString();
 				}
-				if(currentTime.length <= 2) {
+				if(currentTime.toString().length <= 2) {
 					currentTime = currentTime+".";
 				}
 				currentTime = currentTime.toString().padEnd(6,'0');
