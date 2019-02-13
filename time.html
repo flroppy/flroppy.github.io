@@ -116,6 +116,9 @@
 			function updateTime(){
 				var currentdate = new Date();
 				var currentTime = ((currentdate.getHours()*60*60+currentdate.getMinutes()*60+currentdate.getSeconds())/1000);
+				if(currentTime==0){
+					initLocalClocks();
+				}
 				if(currentTime<10){
 					currentTime = " "+currentTime.toString();
 				}
