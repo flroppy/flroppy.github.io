@@ -2,12 +2,12 @@
 	<head></head>
 	<body style="padding:10px">
 		<p style="white-space:pre;font-family:Monaco, monospace;font-size:2em"> ________________________________________
-< The time is <span id="kstime"></span>                     >
+< <span id="cowWords">The time is <span id="kstime"></span>                    </span> >
  ----------------------------------------
         \   ^__^
          \  (oo)\_______
             (__)\       )\/\
-                ||----w |	
+                ||----<a onclick="ow()" style="text-decoration:none;color:black;" href="#">w</a> |	
                 ||     ||
 		</p>
 		<script>
@@ -26,6 +26,16 @@
 			 }
 			 updateTime();
 			 var x = setInterval(updateTime, 100);
+		function ow(){
+			var yes = "That's me utters!";
+			document.getElementById("cowWords").innerHTML = yes.padEnd(38);
+			setTimeout(function (){
+
+				document.getElementById("cowWords").innerHTML = "The time is <span id=\"kstime\"> 0.000</span>                    ";
+				updateTime();
+			}, 5000);
+			
+		}
 		</script>
 	</body>
 </html>
