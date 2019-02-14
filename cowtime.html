@@ -4,9 +4,9 @@
 		<p style="white-space:pre;font-family:Monaco, monospace;font-size:2em; line-height:1em;"> ________________________________________
 < <span id="cowWords">The time is <span id="kstime"></span>                    </span> >
  ----------------------------------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
+        \   <a onclick="ears()" style="text-decoration:none;color:black;" href="#">^__^</a>
+         \  (<a onclick="eyes()" style="text-decoration:none;color:black;" href="#">oo</a>)\_______
+            (__)\       )<a onclick="tail()" style="text-decoration:none;color:black;" href="#">\/\</a>
                 ||----<a onclick="ow()" style="text-decoration:none;color:black;" href="#">w</a> |	
                 ||     ||
 		</p>
@@ -34,7 +34,33 @@
 				document.getElementById("cowWords").innerHTML = "The time is <span id=\"kstime\"> 0.000</span>                    ";
 				updateTime();
 			}, 5000);
-			
+		}
+		function tail(){
+			var yes = "That's me tail!";
+			document.getElementById("cowWords").innerHTML = yes.padEnd(38);
+			setTimeout(function (){
+
+				document.getElementById("cowWords").innerHTML = "The time is <span id=\"kstime\"> 0.000</span>                    ";
+				updateTime();
+			}, 5000);
+		}
+		function eyes(){
+			var yes = "That's me eyes!";
+			document.getElementById("cowWords").innerHTML = yes.padEnd(38);
+			setTimeout(function (){
+
+				document.getElementById("cowWords").innerHTML = "The time is <span id=\"kstime\"> 0.000</span>                    ";
+				updateTime();
+			}, 5000);
+		}
+		function ears(){
+			var yes = "That's me ears!";
+			document.getElementById("cowWords").innerHTML = yes.padEnd(38);
+			setTimeout(function (){
+
+				document.getElementById("cowWords").innerHTML = "The time is <span id=\"kstime\"> 0.000</span>                    ";
+				updateTime();
+			}, 5000);
 		}
 		</script>
 	</body>
