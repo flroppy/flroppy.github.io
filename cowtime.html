@@ -1,0 +1,31 @@
+<html>
+	<head></head>
+	<body style="padding:10px">
+		<p style="white-space:pre;font-family:Monaco, monospace;font-size:2em"> ________________________________________
+< The time is <span id="kstime"></span>                     >
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |	
+                ||     ||
+		</p>
+		<script>
+		function updateTime(){
+				var currentdate = new Date();
+				var currentTime = ((currentdate.getHours()*60*60+currentdate.getMinutes()*60+currentdate.getSeconds())/1000);
+				if(currentTime<10){
+					currentTime = " "+currentTime.toString();
+				}
+				if(currentTime.toString().length <= 2) {
+					currentTime = currentTime+".";
+				}
+				currentTime = currentTime.toString().padEnd(6,'0');
+				document.getElementById("kstime").innerHTML = currentTime;
+				document.title = "The cow says the time is "+currentTime+"ks";
+			 }
+			 updateTime();
+			 var x = setInterval(updateTime, 100);
+		</script>
+	</body>
+</html>
