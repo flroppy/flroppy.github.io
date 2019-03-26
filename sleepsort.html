@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		
+		<input type="text" name="nums"/>
+		<button id="send" onclick="update();">sort</button> 
+		<p id="out"></p>
+		<script>
+			Array.prototype.timeoutSort = function (f) {
+				this.forEach(function (n) {
+					setTimeout(function () { f(n) }, 1000 * n)
+				});
+			}
+			
+			function update(){
+				var input = document.getElementsByName("nums")[0].value.split(" ");
+				for(var i = 0; i<=input.size; i++){
+					input[i] = parseInt(input[i])
+				}
+				document.getElementById("out").innerHTML="";
+				input.timeoutSort(write);
+			}
+			
+			function write(n) { document.getElementById("out").innerHTML += (n + '<br>'); }
+			
+			//[1, 9, 8, 7, 6, 5, 3, 4, 5, 2, 0].timeoutSort(write);
+		</script>
+	</body>
+</html>
