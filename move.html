@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>hi</title>
+		<style style="text/css">
+			* {
+				font-family:monospace;
+			}
+			span {
+				font-size:2em;
+			}
+			button{
+				padding:2px;
+				margin:5px;
+				margin-left:0px;
+				color:black;
+				background-color:white;
+				border-style:solid;
+				border-color:black;
+				padding:5px
+			}
+		</style>
+		<script>
+			function randomXY(minVal,maxVal)
+			{
+			  var randVal = minVal+(Math.random()*(maxVal-minVal));
+			  return Math.round(randVal);
+			}
+		</script>
+	</head>
+	<body>
+		
+			<input type="text" name="word" />
+			<button id="send" onclick="update();"><em>do it</em></button>
+		
+		<div id="marquees" style="max-width:500px;border-right-style:solid;border-right-width:1px;border-right-color:black;border-left-style:solid;border-left-color:black;border-left-width:1px;"></div>
+		<span id="far"></span>
+		<br />
+		<div>
+			<button id="random" onclick="randomize();">Randomize</button>
+			
+			<button id="yes" onclick="faster();" style="background-color:#88FF88"><em>Faster</em></button>
+			
+			<button id="stop" onclick="start();">Make it start</button>
+			
+			<button id="ohno" onclick="ohno();">Make my suffering end</button>
+			
+			<button id="plsstop" onclick="reset();" style="background-color:#FF8888">STOP!</button>
+		</div>
+		<div>
+		<form action = "maya.html">
+			<button type="submit" value="4maya" style="position:absolute;bottom:0px;right:0px;"></button>
+		</form>
+		</div>
+		<script>
+		var n = 0;
+		document.getElementById("far").innerHTML = n;
+		
+		generate("NATHAN");
+		function generate(word){
+			var i = 0;
+			var output="";
+			for(i = 0; i<word.length; i++){
+				output += "<marquee behavior=\"scroll\" direction=\"right\" scrollamount=\""+(i+1)+"\"><span class=\"letters\">"+word.charAt(i)+"</span></marquee>";
+			}
+			document.getElementById("marquees").innerHTML = output;
+		}
+		
+		function update(){
+			generate(document.getElementsByName("word")[0].value.replace(/ /g,""));
+			var size = 36/document.getElementsByName("word")[0].value.replace(/ /g,"").length;
+			var i = 0;
+			for(i = 0; i<document.getElementsByClassName("letters").length; i++){
+				document.getElementsByClassName("letters")[i].setAttribute("style", "font-size:"+size+"em");
+			}
+		}
+		
+		function randoAdd(){
+			faster();
+			randomize();
+		}
+
+		function randomize(){
+			var i;
+			for(i=0;i<document.getElementsByTagName("marquee").length;i++){
+				document.getElementsByTagName("marquee")[i].setAttribute("scrollamount", randomXY(1+n,25+n*i+n));
+			}
+		}
+
+		function faster(){
+			n++;
+			document.getElementById("far").innerHTML = n;
+			randomize();
+		}
+		var interval = setInterval(randoAdd, 5000);
+		clearInterval(interval);
+		function stop(){
+			clearInterval(interval);
+			//n = 0;
+			//document.getElementById("far").innerHTML = n;
+			document.getElementById("stop").innerHTML = "Make it start";
+			document.getElementById("stop").onclick = function () { start(); };
+		}
+
+		function start(){
+			interval = setInterval(randoAdd, 5000);
+			document.getElementById("stop").innerHTML = "Make it stop";
+			document.getElementById("stop").onclick = function () { stop(); };
+			randomize();
+		}
+		
+		function reset(){
+			location.reload();
+		}
+		
+		function ohno(){
+			document.getElementsByTagName("body")[0].innerHTML="<button onclick=\"comeback();\">come back please I'm not done</button>";
+		}
+		
+		function comeback(){
+			location.reload();
+		}
+		</script>
+	</body>
+</html>

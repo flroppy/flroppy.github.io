@@ -5,7 +5,7 @@
 	<body>
 		
 		<input type="text" name="nums" value="1 9 8 7 6 5 3 4 5 2 0"/>
-		<button id="send" onclick="update();">sort</button> 
+		<button id="send" onclick="update(3);">sort</button> 
 		<p id="out"></p>
 		<script>
 			Array.prototype.timeoutSort = function (f,c) {
@@ -14,23 +14,40 @@
 				});
 			}
 			
-			function update(){
+			async function update(n){
 				var id = window.setTimeout(function() {}, 0);
 
 				while (id--) {
 					window.clearTimeout(id); // will do nothing if no timeout with id is present
 				}
-				var input = document.getElementsByName("nums")[0].value.split(" ");
+				var input = document.getElementsByName("nums")[0].value.trim().split(" ");
+				var large = 0;
 				for(var i = 0; i<input.length; i++){
+					
 					input[i] = parseInt(input[i])
+					if(large<input[i]){
+						large = input[i];
+					}
 				}
 				document.getElementById("out").innerHTML="";
 				input.timeoutSort(write,input.length);
+				
+				await sleep(large+input.length+20)
+				if(n>1){
+					n-=1;
+					again = document.getElementById("out").innerHTML.split("<br>");
+					//document.write(again.join(" "));
+					document.getElementsByName("nums")[0].value = again.join(" ");
+					update(n);
+				}
+			}
+			
+			function sleep(ms) {
+			  return new Promise(resolve => setTimeout(resolve, ms));
 			}
 			
 			function write(n) { document.getElementById("out").innerHTML += (n + '<br>'); }
-			update()
-			//[1, 9, 8, 7, 6, 5, 3, 4, 5, 2, 0].timeoutSort(write);
+			update(1)
 		</script>
 	</body>
 </html>
