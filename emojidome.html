@@ -28,6 +28,9 @@
 							j.scores[1].competitor + "(" +
 							j.scores[1].score + ")"
 			 );
+			if(j.scores[0].competitor!=competitor2){
+			cleardps(j.scores[0].competitor+"%");
+			}
 			 try{
 			 if(j.scores[0].competitor!=competitor2 && j.scores[1].competitor!=competitor2){
 				$('#log').prepend(old.scores[0].competitor + "(" +
