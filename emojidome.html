@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		
+		<script src="https://github.com/chartjs/Chart.js/releases/download/v2.8.0/Chart.bundle.min.js"></script>
+
+	</head>
+	<body>
+		<p id="msg"></p>
+		<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+		<p id="log"></p>
+		<script>
+			var ws = new WebSocket("wss://emojidome.xkcd.com/2131/socket");
+			var percentage = 0;
+			var competitor2= " ";
+			var old = 0;
+			ws.onmessage = function (event) {
+			 var j = JSON.parse(event.data);
+			 if(competitor2==" "){
+			 competitor2 = j.scores[0].competitor;
+			 cleardps(j.scores[0].competitor+"%");
+			 }
+			 if (typeof j.scores === 'undefined') return;
+			 $('#msg').html(j.scores[0].competitor + "(" +
+							j.scores[0].score + ") vs. " +
+							j.scores[1].competitor + "(" +
+							j.scores[1].score + ")"
+			 );
+			 try{
+			 if(j.scores[0].competitor!=competitor2 && j.scores[1].competitor!=competitor2){
+				$('#log').prepend(old.scores[0].competitor + "(" +
+							old.scores[0].score + ") vs. " +
+							old.scores[1].competitor + "(" +
+							old.scores[1].score + ")<br />");
+				competitor2 = j.scores[0].competitor;
+				cleardps(j.scores[0].competitor+"%");
+			 }
+			 } catch{}
+			 percentage = j.scores[0].score*100/(j.scores[0].score+j.scores[1].score);
+			 old = j;
+			}
+		</script>
+				<script>
+
+		var dps = []; // dataPoints
+		function cleardps(title){
+			dps = [];
+			chart = new CanvasJS.Chart("chartContainer", {
+			title :{
+				text: title
+			},
+			axisY: {
+				includeZero: false
+			},      
+			data: [{
+				type: "line",
+				dataPoints: dps
+			}]
+		});
+		}
+		var chart = new CanvasJS.Chart("chartContainer", {
+			title :{
+				text: "Dynamic Data"
+			},
+			axisY: {
+				includeZero: false
+			},      
+			data: [{
+				type: "line",
+				dataPoints: dps
+			}]
+		});
+
+		var xVal = 0;
+		var yVal = 100; 
+		var updateInterval = 1000;
+		var dataLength = 600; // number of dataPoints visible at any point
+
+		var updateChart = function (count) {
+
+				yVal =percentage;
+				dps.push({
+					x: xVal,
+					y: yVal
+				});
+				xVal++;
+			
+			if (dps.length > dataLength) {
+				dps.shift();
+			}
+
+			chart.render();
+		};
+
+		setInterval(function(){updateChart()}, updateInterval);
+</script>
+	</body>
+</html>
